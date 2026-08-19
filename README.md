@@ -92,6 +92,31 @@ cp .env.example .env         # then add your OpenRouter API key
 streamlit run app.py
 ```
 
+On Windows, `run.ps1` wraps the same commands and keeps Python's scratch files and
+package cache off the C drive:
+
+```powershell
+.\run.ps1              # start the app
+.\run.ps1 -Task test   # run both test suites
+.\run.ps1 -Task install
+```
+
+## Tests
+
+28 tests, none of which call the model, so they run in seconds and give the same
+result every time.
+
+```bash
+python test_inventory.py     # alerting rules and stockout cost arithmetic
+python test_retrieval.py     # chunking, ranking and refusal
+```
+
+The retrieval tests cover refusal as well as recall, since a search layer that
+always returns its least bad match is how a grounded tool ends up confidently
+wrong. They include a regression test for a real bug: the word "does" in "how long
+does the tour take" was matching a document that read "does not expire" and
+outranking the one that actually described the tour.
+
 ## Layout
 
 ```
@@ -104,9 +129,9 @@ config.py              API and chunking settings
 test_inventory.py      Tests for the alerting and cost logic
 test_retrieval.py      Tests for chunking, ranking and refusal
 sample_docs/           Sample document preloaded into the Q&A tab
+run.ps1                Windows launcher
 .streamlit/config.toml Theme and server defaults
 BRIEF.md               Short summary written for the business
-
 ```
 
 ## Author
