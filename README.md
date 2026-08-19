@@ -107,6 +107,7 @@ sample_docs/           Sample document preloaded into the Q&A tab
 .streamlit/config.toml Theme and server defaults
 BRIEF.md               Short summary written for the business
 
+```
 
 ## Author
 
