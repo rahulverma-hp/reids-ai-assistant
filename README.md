@@ -92,15 +92,6 @@ cp .env.example .env         # then add your OpenRouter API key
 streamlit run app.py
 ```
 
-On Windows, `run.ps1` wraps the same commands and keeps Python's scratch files and
-package cache off the C drive:
-
-```powershell
-.\run.ps1              # start the app
-.\run.ps1 -Task test   # run both test suites
-.\run.ps1 -Task install
-```
-
 ## Tests
 
 28 tests, none of which call the model, so they run in seconds and give the same
@@ -129,7 +120,6 @@ config.py              API and chunking settings
 test_inventory.py      Tests for the alerting and cost logic
 test_retrieval.py      Tests for chunking, ranking and refusal
 sample_docs/           Sample document preloaded into the Q&A tab
-run.ps1                Windows launcher
 .streamlit/config.toml Theme and server defaults
 BRIEF.md               Short summary written for the business
 ```
