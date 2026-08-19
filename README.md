@@ -92,43 +92,6 @@ cp .env.example .env         # then add your OpenRouter API key
 streamlit run app.py
 ```
 
-### Windows launcher
-
-`run.ps1` wraps the same commands and keeps Python's scratch files and package
-cache on the D drive instead of the user profile, which matters on machines where
-C is the small partition.
-
-```powershell
-.\run.ps1              # start the app
-.\run.ps1 -Task test   # run both test suites
-.\run.ps1 -Task install
-```
-
-If PowerShell's execution policy blocks the script:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\run.ps1 -Task test
-```
-
-## Tests
-
-28 tests, none of which call the model, so they run fast and deterministically.
-
-```bash
-python test_inventory.py     # alerting rules and stockout cost arithmetic
-python test_retrieval.py     # chunking, ranking and refusal
-```
-
-The retrieval tests cover refusal as well as recall, and include a regression
-test for a bug where the word "does" in "how long does the tour take" outranked
-the document that actually described the tour.
-
-## Deploying on Streamlit Cloud
-
-1. Push to GitHub.
-2. Connect the repo at [share.streamlit.io](https://share.streamlit.io).
-3. Add `OPENROUTER_API_KEY` under Secrets.
-
 ## Layout
 
 ```
@@ -141,11 +104,9 @@ config.py              API and chunking settings
 test_inventory.py      Tests for the alerting and cost logic
 test_retrieval.py      Tests for chunking, ranking and refusal
 sample_docs/           Sample document preloaded into the Q&A tab
-run.ps1                Windows launcher
 .streamlit/config.toml Theme and server defaults
 BRIEF.md               Short summary written for the business
-WALKTHROUGH_SCRIPT.md  Notes for a short demo video
-```
+
 
 ## Author
 
